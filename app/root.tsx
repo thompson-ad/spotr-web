@@ -39,6 +39,7 @@ import {
 import { Icon, href as iconsHref } from './components/ui/icon.tsx'
 import { EpicToaster } from './components/ui/sonner.tsx'
 import { ThemeSwitch, useTheme } from './routes/resources+/theme-switch.tsx'
+import fontStyleSheetUrl from './styles/font.css'
 import tailwindStyleSheetUrl from './styles/tailwind.css?url'
 import { getUserId, logout } from './utils/auth.server.ts'
 import { ClientHintCheck, getHints } from './utils/client-hints.tsx'
@@ -70,6 +71,7 @@ export const links: LinksFunction = () => {
 		} as const, // necessary to make typescript happy
 		{ rel: 'icon', type: 'image/svg+xml', href: faviconSvg },
 		{ rel: 'stylesheet', href: tailwindStyleSheetUrl },
+		{ rel: 'stylesheet', href: fontStyleSheetUrl },
 	].filter(Boolean)
 }
 
