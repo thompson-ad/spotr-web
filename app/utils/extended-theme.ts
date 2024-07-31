@@ -1,4 +1,5 @@
 import { type Config } from 'tailwindcss'
+import defaultTheme from 'tailwindcss/defaultTheme.js'
 
 export const extendedTheme = {
 	colors: {
@@ -52,6 +53,9 @@ export const extendedTheme = {
 		lg: 'var(--radius)',
 		md: 'calc(var(--radius) - 2px)',
 		sm: 'calc(var(--radius) - 4px)',
+	},
+	fontFamily: {
+		sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
 	},
 	fontSize: {
 		// 1rem = 16px
