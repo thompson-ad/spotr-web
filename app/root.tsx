@@ -39,7 +39,7 @@ import {
 import { Icon, href as iconsHref } from './components/ui/icon.tsx'
 import { EpicToaster } from './components/ui/sonner.tsx'
 import { ThemeSwitch, useTheme } from './routes/resources+/theme-switch.tsx'
-import fontStyleSheetUrl from './styles/font.css'
+import fontStyleSheetUrl from './styles/font.css?url'
 import tailwindStyleSheetUrl from './styles/tailwind.css?url'
 import { getUserId, logout } from './utils/auth.server.ts'
 import { ClientHintCheck, getHints } from './utils/client-hints.tsx'
@@ -56,6 +56,7 @@ import { useOptionalUser, useUser } from './utils/user.ts'
 export const links: LinksFunction = () => {
 	return [
 		// Preload svg sprite as a resource to avoid render blocking
+		// Will throw a warning if not used immediately - consider removing if we don't end up using
 		{ rel: 'preload', href: iconsHref, as: 'image' },
 		{ rel: 'mask-icon', href: maskIcon },
 		{
@@ -70,15 +71,18 @@ export const links: LinksFunction = () => {
 			crossOrigin: 'use-credentials',
 		} as const, // necessary to make typescript happy
 		{ rel: 'icon', type: 'image/svg+xml', href: faviconSvg },
-		{ rel: 'stylesheet', href: tailwindStyleSheetUrl },
 		{ rel: 'stylesheet', href: fontStyleSheetUrl },
+		{ rel: 'stylesheet', href: tailwindStyleSheetUrl },
 	].filter(Boolean)
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	return [
 		{ title: data ? 'Spotr' : 'Error | Spotr' },
-		{ name: 'description', content: `Your own captain's log` },
+		{
+			name: 'description',
+			content: `Spotr - train your audience and enhance your coaching`,
+		},
 	]
 }
 
@@ -253,7 +257,7 @@ function Logo() {
 				Spotr
 			</span>
 			<span className="font-bold transition group-hover:translate-x-1">
-				pursue life
+				Pursue life
 			</span>
 		</Link>
 	)
